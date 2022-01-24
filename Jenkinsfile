@@ -2,7 +2,7 @@ pipeline {
         environment {
             dockerImage = ''
         }
-        
+
     agent { 
         docker { 
                 label 'docker'
@@ -19,19 +19,26 @@ pipeline {
         }
 
         stage('build dockerfile'){
-            docker.build("stumptownRider/BMSApp")
+            steps {
+                script {
+                    docker.build("stumptownRider/BMSApp")
+                }
+            }
         }
 
         stage('Push image to docker'){
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials'){
-            dockerImage.push()
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials'){
+                    dockerImage.push()
+                }
             }
         }    
 
         stage('Cleanup files') {
             steps {
                 sh "docker images"
-                sh "docker rmi stumptownRider/BMSApp"
+                //sh "docker rmi stumptownRider/BMSApp"
             }     
         }
     }
