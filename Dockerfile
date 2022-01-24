@@ -1,7 +1,5 @@
-FROM tomcat:8.0-alpine
-
-LABEL maintainer="dev@bmsShop.com"
-COPY target/bookzyWebApp.war /usr/local/tomcat/webapps/
-COPY resources/setenv.sh /usr/local/tomcat/bin/
+FROM tomcat:latest
+LABEL Author = "Chris Iverson"
+ADD ./target/AnsibleCICD.war /usr/local/tomcat/webapps RUN chmod +x $CATALINA_HOME/bin
 EXPOSE 8080
-CMD ["catalina.sh","run"]                         
+CMD ["catalina.sh","run"]                 
