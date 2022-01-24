@@ -32,6 +32,7 @@ pipeline {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials'){
                     dockerImage.push()
                 }
+              }
             }
         }    
 
@@ -41,5 +42,6 @@ pipeline {
                 //sh "docker rmi stumptownRider/BMSApp"
             }     
         }
+    
     }
 }
