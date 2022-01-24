@@ -3,11 +3,11 @@
   vars:
     key_name: awsMaster
     ec2_instances:
-      - name: ansible
-        image: "ami-0279c3b3186e54acd"
-        tags: 
-          group: cfgMgmt
-          Name: ansible
+      # - name: ansible
+      #   image: "ami-0279c3b3186e54acd"
+      #   tags: 
+      #     group: cfgMgmt
+      #     Name: ansible
         # ssh_user: ubuntu
 
       - name: jenkins

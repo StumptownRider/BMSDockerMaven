@@ -10,8 +10,8 @@ filters:
 keyed_groups:
   - key: tags.group
     separator: ''
-  - key: tags.name
-    separator: ''
+  # - key: tags.name
+  #   separator: ''
 
 hostnames:
   #- test
