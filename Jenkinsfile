@@ -1,6 +1,6 @@
 pipeline {
-    agent docker1
-    
+    agent { docker1 }
+
     environment {
             DOCKERHUB_CREDENTIALS = credentials('stumptownrider-dockerhub')
     }
