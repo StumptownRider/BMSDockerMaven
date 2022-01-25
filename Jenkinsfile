@@ -1,17 +1,18 @@
 pipeline {
+    agent docker1
+    
     environment {
             DOCKERHUB_CREDENTIALS = credentials('stumptownrider-dockerhub')
     }
 
-    agent { 
-        docker { 
-            label 'docker1'
-            image 'maven:3.3.3' 
-        }
-    }
-
     stages {
         stage('log mvn version') {
+            agent { 
+                docker { 
+                    label 'docker1'
+                    image 'maven:3.3.3' 
+                }
+            }
             steps {
                 sh 'mvn --version'
                 sh 'mvn clean package'
