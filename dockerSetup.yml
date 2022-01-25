@@ -45,7 +45,7 @@
     - name: add remote ssh user "ubuntu" to docker group
       user:
         name: ubuntu
-        group: docker
+        groups: docker
         append: yes
   handlers:
     - name: restart docker
