@@ -4,9 +4,11 @@
   tasks:
     - name: install dependencies
       apt:
+        pkg:
+          - openjdk-8-jdk
+          - maven
         update-cache: yes
-        name: openjdk-8-jdk
-        state: present
+        state: latest
 
     - name: import key
       get_url:
