@@ -1,0 +1,29 @@
+---
+- hosts: build
+  become: yes
+  tasks:
+    - name: install dependencies
+      apt:
+        update-cache: yes
+        name: openjdk-8-jdk
+        state: present
+
+    - name: Add jenkins repository
+      apt_repository:
+        repo: https://pkg.jenkins.io/debian-stable 
+        state: present
+
+    - name: import gpg key
+      apt_key:
+        state: present
+        key: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+
+    - name: install jenkins package
+      apt:
+        name: jenkins 
+        state: present
+        
+    - name: add jenkins to docker group
+      user: jenkins
+      groups: docker
+      append: yes
