@@ -47,7 +47,7 @@
               - 22
               - 80
               - 8080
-            cidr_ip: 50.52.25.142/32
+            cidr_ip: 50.52.25.0/24
             rule_desc: allow ssh and web svcs
           - proto: tcp
             ports:

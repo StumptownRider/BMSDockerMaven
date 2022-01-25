@@ -1,47 +1,54 @@
 pipeline {
-        environment {
-            dockerImage = ''
-        }
+    environment {
+            DOCKERHUB_CREDENTIALS = credentials('stumptownrider-dockerhub')
+    }
 
     agent { 
         docker { 
-                label 'docker'
-                image 'maven:3.3.3' 
-             }
-          
-
-            stages {
-                stage('log mvn version') {
-                    steps {
-                        sh 'mvn --version'
-                        sh 'mvn clean package'
-                    }
-                }
-
-                stage('build dockerfile'){
-                    steps {
-                        script {
-                            docker.build("stumptownRider/BMSApp")
-                        }
-                    }
-                }
-
-                stage('Push image to docker'){
-                    steps {
-                        script {
-                            docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials')
-                            dockerImage.push()
-                        }  
-                    }
-                }    
-
-                stage('Cleanup files') {
-                    steps {
-                        sh "docker images"
-                        //sh "docker rmi stumptownRider/BMSApp"
-                    }     
-                }
-            }
-    
+            label 'docker'
+            image 'maven:3.3.3' 
+        }
     }
+
+    stages {
+        stage('log mvn version') {
+            steps {
+                sh 'mvn --version'
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('build dockerfile'){
+            steps {
+                sh 'docker build -t stumptownRider/BMSApp:latest .'
+            }
+            
+        }
+
+        stage('Login to DockerHub'){
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }    
+
+        stage('Push image to dockerhub'){
+            steps {
+                sh 'docker push stumptownRider/BMSApp:latest'
+            }
+        }    
+
+        stage('Cleanup files') {
+            steps {
+                sh 'echo docker images'
+                sh 'docker rmi stumptownRider/BMSApp:latest'
+            }     
+        }
+    }
+    
+    post {
+        always {
+            sh 'docker logout'
+        }     
+    }
+    
 }
