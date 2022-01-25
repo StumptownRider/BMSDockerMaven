@@ -39,7 +39,7 @@ pipeline {
                 sh 'docker rmi stumptownRider/BMSApp:latest'
             }     
         }
-    }
+    
     
     post {
         always {
