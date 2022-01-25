@@ -15,7 +15,7 @@ pipeline {
 
         stage('build dockerfile'){
             steps {
-                sh 'docker build -t stumptownRider/bmsapp:latest .'
+                sh 'docker build -t stumptownrider/bmsapp:latest .'
             }
             
         }
@@ -28,14 +28,14 @@ pipeline {
 
         stage('Push image to dockerhub'){
             steps {
-                sh 'docker push stumptownRider/bmsapp:latest'
+                sh 'docker push stumptownrider/bmsapp:latest'
             }
         }    
 
         stage('Cleanup files') {
             steps {
                 sh 'echo docker images'
-                sh 'docker rmi stumptownRider/bmsapp:latest'
+                sh 'docker rmi stumptownrider/bmsapp:latest'
             }     
         }
     }
