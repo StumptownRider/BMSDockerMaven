@@ -7,7 +7,6 @@ pipeline {
 
     stages {
         stage('log mvn version') {
-            }
             steps {
                 sh 'mvn --version'
                 sh 'mvn clean package'
@@ -39,6 +38,7 @@ pipeline {
                 sh 'docker rmi stumptownRider/BMSApp:latest'
             }     
         }
+    }
     
     
     post {
