@@ -3,11 +3,11 @@
   vars:
     key_name: awsMaster
     ec2_instances:
-      # - name: ansible
-      #   image: "ami-0279c3b3186e54acd"
-      #   tags: 
-      #     group: cfgMgmt
-      #     Name: ansible
+      - name: ansible
+        image: "ami-0279c3b3186e54acd"
+        tags: 
+          group: cfgMgmt
+          Name: ansible
         # ssh_user: ubuntu
 
       - name: jenkins
@@ -15,14 +15,14 @@
         tags: 
           group: build
           Name: jenkinsController
-        # ssh_user: ubuntu
+      #   # ssh_user: ubuntu
 
       - name: tomcat
         image: ami-0279c3b3186e54acd # Ubuntu 12.04
         tags: 
           group: compute
           Name: docker1
-        # ssh_user: ubuntu
+      #   # ssh_user: ubuntu
 
       - name: docker
         image: ami-0279c3b3186e54acd # Ubuntu 12.04
@@ -47,7 +47,7 @@
               - 22
               - 80
               - 8080
-            cidr_ip: 206.29.176.0/24
+            cidr_ip: 50.52.25.0/24
             rule_desc: allow ssh and web svcs
           - proto: tcp
             ports:

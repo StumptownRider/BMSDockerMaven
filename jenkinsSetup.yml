@@ -2,13 +2,13 @@
 - hosts: build
   become: yes
   tasks:
-    - name: install dependencies
-      apt:
-        pkg:
-          - openjdk-8-jdk
-          - maven
-        update-cache: yes
-        state: latest
+    # - name: install dependencies
+    #   apt:
+    #     pkg:
+    #       - openjdk-8-jdk
+    #       - maven
+    #     update-cache: yes
+    #     state: latest
 
     - name: import key
       get_url:

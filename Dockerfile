@@ -1,5 +1,7 @@
-FROM tomcat:latest
+FROM tomcat:9.0.58-jre8-openjdk
 LABEL Author = "Chris Iverson"
-ADD ./target/AnsibleCICD.war /usr/local/tomcat/webapps RUN chmod +x $CATALINA_HOME/bin
+RUN chmod +x $CATALINA_HOME/bin
+COPY ./target/BookMyShow.war /usr/local/tomcat/webapps
 EXPOSE 8080
-CMD ["catalina.sh","run"]                 
+ENV CATALINA_OPS="-Xms256M -Xmx512M"
+CMD ["catalina.sh","run"]              

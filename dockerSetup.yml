@@ -1,5 +1,5 @@
 ---
-- hosts: build:compute
+- hosts: compute
   become: true
   tasks:
     - name: install dependencies
@@ -53,11 +53,13 @@
         name: docker 
         state: restarted
 
-- hosts: compute
+- hosts: build:compute
   become: true
   tasks:
-    - name: install JDK
+    - name: install dependencies
       apt:
+        pkg:
+          - openjdk-8-jdk
+          - maven
         update-cache: yes
-        name: openjdk-8-jdk
-        state: present
+        state: latest
