@@ -1,7 +1,0 @@
----
-- hosts: build
-  become: yes
-
-  tasks:
-    - name:
-      pip: 
