@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('log mvn version') {
+        stage('buld test package') {
             steps {
                 sh 'mvn --version'
                 sh 'mvn clean package'
@@ -41,7 +41,7 @@ pipeline {
 
         stage('test ssh remote execution') {
             steps {
-                sshagent(credentials:['docker2-ubuntu']) {
+                sshagent(credentials:['docker-worker-key']) {
                     // some block
                     sh "ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.93.15 'whoami'"
                     sh "ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.93.15 \
