@@ -43,10 +43,10 @@ pipeline {
             steps {
                 sshagent(credentials:['docker-worker-key']) {
                     // some block
-                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.93.15 'whoami'"
-                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.93.15 \
+                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 54.89.240.33 'whoami'"
+                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 54.89.240.33 \
                     'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'"
-                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.93.15 'docker run --name tomcat --rm -d -p 8080:8080 stumptownrider/bmsapp:latest'"
+                    sh "ssh -o StrictHostKeyChecking=no -l ubuntu 54.89.240.33 'docker run --name tomcat --rm -d -p 8080:8080 stumptownrider/bmsapp:latest'"
                 }
             }
         }
